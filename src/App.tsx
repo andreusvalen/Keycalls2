@@ -37,7 +37,12 @@ import {
   Upload,
   FileText,
   Download,
-  KeyRound
+  KeyRound,
+  Instagram,
+  Twitter,
+  Linkedin,
+  Facebook,
+  Quote
 } from 'lucide-react';
 
 const PAYPAL_EMAIL = "andreusvalen2004@gmail.com";
@@ -85,6 +90,30 @@ const COURSES: Course[] = [
   { id: '7', title: 'Social Media Strategies', category: 'Marketing', price: 35, icon: Share2, description: 'Create viral content and manage high-impact communities.', rating: 4.7, students: '9k', duration: '22h', modules: 10 },
   { id: '8', title: 'Native Ads Crash Course', category: 'Marketing', price: 45, icon: Zap, description: 'Non-intrusive advertising that converts: Taboola, Outbrain, and more.', rating: 4.9, students: '2k', duration: '12h', modules: 6 },
   { id: '9', title: 'Google Ads Mastery', category: 'Marketing', price: 15, icon: Search, description: 'Master the search and display network to maximize ROI.', rating: 4.8, students: '7k', duration: '35h', modules: 14 },
+];
+
+const TESTIMONIALS = [
+  {
+    id: 1,
+    name: "Alex Rivera",
+    role: "Digital Marketer",
+    content: "KeyCalls changed my career. The Native Ads course is pure gold. I doubled my ROI in just two weeks!",
+    avatar: "https://picsum.photos/seed/alex/100/100"
+  },
+  {
+    id: 2,
+    name: "Sarah Chen",
+    role: "Full Stack Developer",
+    content: "The Web Development Mastery course is the most comprehensive I've found. The community support is amazing.",
+    avatar: "https://picsum.photos/seed/sarah/100/100"
+  },
+  {
+    id: 3,
+    name: "Marco Rossi",
+    role: "UI/UX Designer",
+    content: "I learned more in the Graphic Design bootcamp than in a year of self-study. Highly recommended!",
+    avatar: "https://picsum.photos/seed/marco/100/100"
+  }
 ];
 
 export default function App() {
@@ -275,9 +304,9 @@ export default function App() {
                   <div className="relative hidden lg:block">
                     <div className="relative z-10 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-[2rem] p-1 shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
                       <img 
-                        src="https://picsum.photos/seed/seo-marketing/800/600" 
+                        src="https://picsum.photos/seed/digital-marketing-strategy/800/600" 
                         className="rounded-[1.8rem] object-cover w-full aspect-[4/3]"
-                        alt="Digital Marketing SEO"
+                        alt="Digital Marketing Strategy"
                         referrerPolicy="no-referrer"
                       />
                     </div>
@@ -360,6 +389,43 @@ export default function App() {
                     </div>
                   </motion.div>
                 ))}
+              </div>
+
+              {/* Testimonials Section */}
+              <div className="mt-24 mb-12">
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl md:text-5xl font-black text-[#374151] dark:text-[#E0F7FA] mb-4 tracking-tight">
+                    What Our <span className="text-[#3B82F6]">Students</span> Say
+                  </h2>
+                  <p className="text-[#374151]/60 dark:text-[#E0F7FA]/60 text-lg">Join thousands of successful professionals.</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {TESTIMONIALS.map((testimonial) => (
+                    <motion.div
+                      key={testimonial.id}
+                      whileHover={{ y: -5 }}
+                      className="bg-white dark:bg-[#121921] p-8 rounded-[2rem] border border-[#EFF6FF] dark:border-[#1E293B] shadow-sm hover:shadow-xl hover:shadow-[#3B82F6]/5 transition-all relative"
+                    >
+                      <Quote className="absolute top-6 right-8 w-10 h-10 text-[#3B82F6]/10" />
+                      <div className="flex items-center gap-4 mb-6">
+                        <img 
+                          src={testimonial.avatar} 
+                          alt={testimonial.name}
+                          className="size-12 rounded-full object-cover border-2 border-[#3B82F6]/20"
+                          referrerPolicy="no-referrer"
+                        />
+                        <div>
+                          <h4 className="font-bold text-[#374151] dark:text-[#E0F7FA]">{testimonial.name}</h4>
+                          <p className="text-xs font-bold text-[#3B82F6] uppercase tracking-widest">{testimonial.role}</p>
+                        </div>
+                      </div>
+                      <p className="text-[#374151]/80 dark:text-[#E0F7FA]/80 italic leading-relaxed">
+                        "{testimonial.content}"
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           )}
@@ -950,6 +1016,22 @@ export default function App() {
             </div>
             <span className="text-xs font-bold uppercase tracking-widest text-[#374151]/40 dark:text-[#E0F7FA]/40">© 2024. All rights reserved.</span>
           </div>
+
+          <div className="flex items-center gap-4">
+            <a href="#" className="p-2 bg-[#3B82F6]/5 dark:bg-[#3B82F6]/10 rounded-xl text-[#374151]/60 dark:text-[#E0F7FA]/60 hover:text-[#3B82F6] hover:bg-[#3B82F6]/10 transition-all">
+              <Twitter className="w-5 h-5" />
+            </a>
+            <a href="#" className="p-2 bg-[#3B82F6]/5 dark:bg-[#3B82F6]/10 rounded-xl text-[#374151]/60 dark:text-[#E0F7FA]/60 hover:text-[#E0F7FA] hover:bg-[#EC4899] transition-all">
+              <Instagram className="w-5 h-5" />
+            </a>
+            <a href="#" className="p-2 bg-[#3B82F6]/5 dark:bg-[#3B82F6]/10 rounded-xl text-[#374151]/60 dark:text-[#E0F7FA]/60 hover:text-white hover:bg-[#0A66C2] transition-all">
+              <Linkedin className="w-5 h-5" />
+            </a>
+            <a href="#" className="p-2 bg-[#3B82F6]/5 dark:bg-[#3B82F6]/10 rounded-xl text-[#374151]/60 dark:text-[#E0F7FA]/60 hover:text-white hover:bg-[#1877F2] transition-all">
+              <Facebook className="w-5 h-5" />
+            </a>
+          </div>
+
           <div className="flex gap-8 text-sm font-bold text-[#374151]/60 dark:text-[#E0F7FA]/60 uppercase tracking-widest">
             <a href="#" className="hover:text-[#3B82F6] transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-[#3B82F6] transition-colors">Terms of Service</a>
