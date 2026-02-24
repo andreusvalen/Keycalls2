@@ -228,6 +228,86 @@ export default function App() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
+              {/* Hero Section */}
+              <div className="relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-[#121921] border border-[#EFF6FF] dark:border-[#1E293B] p-8 md:p-16 mb-16 shadow-2xl shadow-[#3B82F6]/5">
+                <div className="absolute top-0 right-0 -mt-20 -mr-20 size-96 bg-[#3B82F6]/5 blur-[100px] rounded-full"></div>
+                <div className="absolute bottom-0 left-0 -mb-20 -ml-20 size-96 bg-[#10B981]/5 blur-[100px] rounded-full"></div>
+                
+                <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+                  <div>
+                    <div className="inline-flex items-center gap-2 bg-[#3B82F6]/10 text-[#3B82F6] px-4 py-2 rounded-full text-sm font-bold mb-6">
+                      <Sparkles className="w-4 h-4" />
+                      <span>New Cohort Starting Soon</span>
+                    </div>
+                    <h1 className="text-5xl md:text-7xl font-black text-[#374151] dark:text-[#E0F7FA] mb-6 tracking-tighter leading-[0.9]">
+                      Unlock Your <span className="text-[#3B82F6]">Potential</span> with KeyCalls.
+                    </h1>
+                    <p className="text-xl text-[#374151]/60 dark:text-[#E0F7FA]/60 mb-8 leading-relaxed max-w-lg">
+                      Master the most in-demand digital skills with our expert-led courses. From coding to creative design, we provide the keys to your future success.
+                    </p>
+                    <div className="flex flex-wrap gap-4">
+                      <button className="bg-[#3B82F6] text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-[#2563EB] transition-all shadow-lg shadow-[#3B82F6]/20 flex items-center gap-2">
+                        Explore Courses <ArrowRight className="w-5 h-5" />
+                      </button>
+                      <button className="bg-white dark:bg-[#1E293B] text-[#374151] dark:text-[#E0F7FA] px-8 py-4 rounded-2xl font-bold text-lg border border-[#EFF6FF] dark:border-[#1E293B] hover:bg-[#F9FAFB] dark:hover:bg-[#2D3748] transition-all">
+                        Learn More
+                      </button>
+                    </div>
+                    
+                    <div className="mt-12 flex items-center gap-6">
+                      <div className="flex -space-x-3">
+                        {[1, 2, 3, 4].map((i) => (
+                          <img 
+                            key={i}
+                            src={`https://picsum.photos/seed/user${i}/100/100`} 
+                            className="size-10 rounded-full border-2 border-white dark:border-[#121921] object-cover"
+                            alt="User"
+                            referrerPolicy="no-referrer"
+                          />
+                        ))}
+                      </div>
+                      <p className="text-sm font-medium text-[#374151]/60 dark:text-[#E0F7FA]/60">
+                        Joined by <span className="text-[#374151] dark:text-[#E0F7FA] font-bold">2,000+</span> ambitious students
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="relative hidden lg:block">
+                    <div className="relative z-10 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-[2rem] p-1 shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
+                      <img 
+                        src="https://picsum.photos/seed/education/800/600" 
+                        className="rounded-[1.8rem] object-cover w-full aspect-[4/3]"
+                        alt="Education"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
+                    {/* Decorative floating cards */}
+                    <div className="absolute -top-6 -right-6 bg-white dark:bg-[#1E293B] p-4 rounded-2xl shadow-xl border border-[#EFF6FF] dark:border-[#1E293B] z-20 animate-bounce-slow">
+                      <div className="flex items-center gap-3">
+                        <div className="size-10 bg-[#10B981]/10 rounded-xl flex items-center justify-center text-[#10B981]">
+                          <Check className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <p className="text-xs font-bold text-[#374151]/40 dark:text-[#E0F7FA]/40 uppercase">Status</p>
+                          <p className="text-sm font-bold text-[#374151] dark:text-[#E0F7FA]">Course Completed</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="absolute -bottom-6 -left-6 bg-white dark:bg-[#1E293B] p-4 rounded-2xl shadow-xl border border-[#EFF6FF] dark:border-[#1E293B] z-20 animate-float">
+                      <div className="flex items-center gap-3">
+                        <div className="size-10 bg-[#F59E0B]/10 rounded-xl flex items-center justify-center text-[#F59E0B]">
+                          <Zap className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <p className="text-xs font-bold text-[#374151]/40 dark:text-[#E0F7FA]/40 uppercase">Progress</p>
+                          <p className="text-sm font-bold text-[#374151] dark:text-[#E0F7FA]">85% Mastered</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="mb-12">
                 <div className="flex items-center gap-2 text-sm text-[#374151]/60 dark:text-[#E0F7FA]/60 mb-8">
                   <span>Home</span>
