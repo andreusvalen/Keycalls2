@@ -275,9 +275,9 @@ export default function App() {
                   <div className="relative hidden lg:block">
                     <div className="relative z-10 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-[2rem] p-1 shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
                       <img 
-                        src="https://picsum.photos/seed/education/800/600" 
+                        src="https://picsum.photos/seed/seo-marketing/800/600" 
                         className="rounded-[1.8rem] object-cover w-full aspect-[4/3]"
-                        alt="Education"
+                        alt="Digital Marketing SEO"
                         referrerPolicy="no-referrer"
                       />
                     </div>
