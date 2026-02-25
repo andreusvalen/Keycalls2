@@ -7,14 +7,11 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ShieldCheck, 
-  CreditCard, 
   Info, 
   Copy, 
   Check, 
   ArrowRight, 
   Mail, 
-  QrCode,
-  Lock,
   ExternalLink,
   Code,
   BarChart,
@@ -47,7 +44,6 @@ import {
 
 const PAYPAL_EMAIL = "andreusvalen2004@gmail.com";
 const NOTE_TEXT = "I am satisfied with the service received and I am aware that it corresponds to a non-refundable good.";
-const QR_CODE_URL = "https://lh3.googleusercontent.com/aida-public/AB6AXuBGEFUyC0dxDrPSSLj27bQE1dNYI_esFoAefirsyXh67P_ajUVxs7thf8YpOxtZX8nAbPcbf-UtnKlMP86GetAYuEaC1GiWfCAn5q0g2tGvYSHYZEffDnfP6rvJUKpfjN_CuRWyyRSjpzDkG8jyRavwskTJVgZMcHgIrq4Wa3vGmAvYy_dG2s1alr1P2wnPw2qZ2laEud2TNDN5cB0UrzlTMaF0t_tyv6pgc7AniEsg0EPzzQwv3bNSx7StUbUPcq34Wu-8q464Tccy";
 const PAYPAL_BUTTON_URL = "https://lh3.googleusercontent.com/aida-public/AB6AXuDBO2s-w0XEG0wZh2A4k_zrm0HDw7D67X3HEgGQ7A6cLvLtcGirgvCRjTUnPFNkdFDwJRPcZY2NEF_HyF9yKIZCb6jmRdvIPrzQliCeclVnxY_7KSCq0iS3XgT53BuxDTHiS_oDd52qWvWIwwOnQnXr4t16YabvAjT1XaJsisH5XorHywfrQFpTBqkmNMWaHoCePcbzvgB6kYbICUmXGjdvKwYnIfKiC_MHX2foVT9ib18FJesADjvlo-iM350lyWMMARszzGhLAbys";
 
 const KKeyIcon = ({ className }: { className?: string }) => (
@@ -120,7 +116,6 @@ export default function App() {
   const [view, setView] = useState<'catalog' | 'checkout' | 'payment' | 'confirmation' | 'admin'>('catalog');
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [copied, setCopied] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [paymentProof, setPaymentProof] = useState<File | null>(null);
@@ -135,16 +130,6 @@ export default function App() {
   const [adminPassword, setAdminPassword] = useState('');
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
   const [submissions, setSubmissions] = useState<{email: string, course: string, date: string}[]>([]);
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('keycalls_theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('keycalls_theme', 'light');
-    }
-  }, [darkMode]);
 
   useEffect(() => {
     const path = window.location.pathname;
@@ -196,12 +181,12 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB] dark:bg-[#0A0F14] text-[#374151] dark:text-[#E0F7FA] font-sans selection:bg-[#3B82F6]/20 transition-colors duration-300">
+    <div className="min-h-screen bg-white text-[#374151] font-sans selection:bg-[#3B82F6]/20 transition-colors duration-300">
       {/* Header */}
-      <header className="bg-white dark:bg-[#121921] border-b border-[#EFF6FF] dark:border-[#1E293B] sticky top-0 z-50 transition-colors duration-300">
+      <header className="bg-white border-b border-sky-100 sticky top-0 z-50 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div 
-            className="flex items-center cursor-pointer group bg-[#3B82F6]/5 hover:bg-[#3B82F6]/10 px-3 py-1.5 rounded-2xl transition-all duration-300 border border-transparent hover:border-[#3B82F6]/20" 
+            className="flex items-center cursor-pointer group bg-sky-50 hover:bg-sky-100 px-3 py-1.5 rounded-2xl transition-all duration-300 border border-transparent hover:border-sky-200" 
             onClick={() => setView('catalog')}
           >
             <div className="relative flex items-center justify-center -mr-3">
@@ -209,31 +194,24 @@ export default function App() {
               <div className="absolute inset-0 bg-[#3B82F6]/30 blur-md rounded-full scale-0 group-hover:scale-110 transition-transform duration-500"></div>
             </div>
             <div className="flex font-black text-2xl tracking-tighter">
-              <span className="text-[#10B981] group-hover:scale-110 transition-transform cursor-default">e</span>
-              <span className="text-[#F59E0B] group-hover:scale-110 transition-transform cursor-default">y</span>
-              <span className="text-[#EF4444] ml-0.5 group-hover:scale-110 transition-transform cursor-default">C</span>
-              <span className="text-[#8B5CF6] group-hover:scale-110 transition-transform cursor-default">a</span>
-              <span className="text-[#EC4899] group-hover:scale-110 transition-transform cursor-default">l</span>
-              <span className="text-[#06B6D4] group-hover:scale-110 transition-transform cursor-default">l</span>
-              <span className="text-[#F97316] group-hover:scale-110 transition-transform cursor-default">s</span>
+              <span className="text-[#3B82F6] group-hover:scale-110 transition-transform cursor-default">e</span>
+              <span className="text-[#0EA5E9] group-hover:scale-110 transition-transform cursor-default">y</span>
+              <span className="text-[#F59E0B] ml-0.5 group-hover:scale-110 transition-transform cursor-default">C</span>
+              <span className="text-[#3B82F6] group-hover:scale-110 transition-transform cursor-default">a</span>
+              <span className="text-[#0EA5E9] group-hover:scale-110 transition-transform cursor-default">l</span>
+              <span className="text-[#F59E0B] group-hover:scale-110 transition-transform cursor-default">l</span>
+              <span className="text-[#3B82F6] group-hover:scale-110 transition-transform cursor-default">s</span>
             </div>
           </div>
           
-          <div className="hidden md:flex items-center gap-9 text-sm font-medium text-[#374151]/80 dark:text-[#E0F7FA]/80">
+          <div className="hidden md:flex items-center gap-9 text-sm font-medium text-[#374151]/80">
             <a href="#" className="hover:text-[#3B82F6] transition-colors">Courses</a>
             <a href="#" className="hover:text-[#3B82F6] transition-colors">My Learning</a>
             <a href="#" className="hover:text-[#3B82F6] transition-colors">Resources</a>
           </div>
 
           <div className="flex items-center gap-4">
-            <button 
-              onClick={() => setDarkMode(!darkMode)}
-              className="p-2 text-[#374151]/60 dark:text-[#E0F7FA]/60 hover:text-[#3B82F6] transition-colors"
-              aria-label="Toggle dark mode"
-            >
-              {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </button>
-            <button className="p-2 text-[#374151]/60 dark:text-[#E0F7FA]/60 hover:text-[#3B82F6] transition-colors">
+            <button className="p-2 text-[#374151]/60 hover:text-[#3B82F6] transition-colors">
               <ShoppingCart className="w-6 h-6" />
             </button>
             <div className="size-10 rounded-full border-2 border-[#3B82F6] overflow-hidden">
@@ -258,27 +236,27 @@ export default function App() {
               exit={{ opacity: 0 }}
             >
               {/* Hero Section */}
-              <div className="relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-[#121921] border border-[#EFF6FF] dark:border-[#1E293B] p-8 md:p-16 mb-16 shadow-2xl shadow-[#3B82F6]/5">
-                <div className="absolute top-0 right-0 -mt-20 -mr-20 size-96 bg-[#3B82F6]/5 blur-[100px] rounded-full"></div>
-                <div className="absolute bottom-0 left-0 -mb-20 -ml-20 size-96 bg-[#10B981]/5 blur-[100px] rounded-full"></div>
+              <div className="relative overflow-hidden rounded-[2.5rem] bg-white border border-sky-100 p-8 md:p-16 mb-16 shadow-2xl shadow-blue-500/5">
+                <div className="absolute top-0 right-0 -mt-20 -mr-20 size-96 bg-blue-500/5 blur-[100px] rounded-full"></div>
+                <div className="absolute bottom-0 left-0 -mb-20 -ml-20 size-96 bg-sky-400/5 blur-[100px] rounded-full"></div>
                 
                 <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
                   <div>
-                    <div className="inline-flex items-center gap-2 bg-[#3B82F6]/10 text-[#3B82F6] px-4 py-2 rounded-full text-sm font-bold mb-6">
+                    <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-bold mb-6">
                       <Sparkles className="w-4 h-4" />
                       <span>New Cohort Starting Soon</span>
                     </div>
-                    <h1 className="text-5xl md:text-7xl font-black text-[#374151] dark:text-[#E0F7FA] mb-6 tracking-tighter leading-[0.9]">
+                    <h1 className="text-5xl md:text-7xl font-black text-[#374151] mb-6 tracking-tighter leading-[0.9]">
                       Unlock Your <span className="text-[#3B82F6]">Potential</span> with KeyCalls.
                     </h1>
-                    <p className="text-xl text-[#374151]/60 dark:text-[#E0F7FA]/60 mb-8 leading-relaxed max-w-lg">
+                    <p className="text-xl text-[#374151]/60 mb-8 leading-relaxed max-w-lg">
                       Master the most in-demand digital skills with our expert-led courses. From coding to creative design, we provide the keys to your future success.
                     </p>
                     <div className="flex flex-wrap gap-4">
-                      <button className="bg-[#3B82F6] text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-[#2563EB] transition-all shadow-lg shadow-[#3B82F6]/20 flex items-center gap-2">
+                      <button className="bg-[#3B82F6] text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-[#2563EB] transition-all shadow-lg shadow-blue-500/20 flex items-center gap-2">
                         Explore Courses <ArrowRight className="w-5 h-5" />
                       </button>
-                      <button className="bg-white dark:bg-[#1E293B] text-[#374151] dark:text-[#E0F7FA] px-8 py-4 rounded-2xl font-bold text-lg border border-[#EFF6FF] dark:border-[#1E293B] hover:bg-[#F9FAFB] dark:hover:bg-[#2D3748] transition-all">
+                      <button className="bg-white text-[#374151] px-8 py-4 rounded-2xl font-bold text-lg border border-sky-100 hover:bg-sky-50 transition-all">
                         Learn More
                       </button>
                     </div>
@@ -289,47 +267,47 @@ export default function App() {
                           <img 
                             key={i}
                             src={`https://picsum.photos/seed/user${i}/100/100`} 
-                            className="size-10 rounded-full border-2 border-white dark:border-[#121921] object-cover"
+                            className="size-10 rounded-full border-2 border-white object-cover"
                             alt="User"
                             referrerPolicy="no-referrer"
                           />
                         ))}
                       </div>
-                      <p className="text-sm font-medium text-[#374151]/60 dark:text-[#E0F7FA]/60">
-                        Joined by <span className="text-[#374151] dark:text-[#E0F7FA] font-bold">2,000+</span> ambitious students
+                      <p className="text-sm font-medium text-[#374151]/60">
+                        Joined by <span className="text-[#374151] font-bold">2,000+</span> ambitious students
                       </p>
                     </div>
                   </div>
                   
                   <div className="relative hidden lg:block">
-                    <div className="relative z-10 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-[2rem] p-1 shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
+                    <div className="relative z-10 bg-gradient-to-br from-[#3B82F6] to-sky-400 rounded-[2rem] p-1 shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
                       <img 
-                        src="https://picsum.photos/seed/digital-marketing-strategy/800/600" 
+                        src="https://images.pexels.com/photos/5716001/pexels-photo-5716001.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
                         className="rounded-[1.8rem] object-cover w-full aspect-[4/3]"
-                        alt="Digital Marketing Strategy"
+                        alt="Digital Marketing Presentation"
                         referrerPolicy="no-referrer"
                       />
                     </div>
                     {/* Decorative floating cards */}
-                    <div className="absolute -top-6 -right-6 bg-white dark:bg-[#1E293B] p-4 rounded-2xl shadow-xl border border-[#EFF6FF] dark:border-[#1E293B] z-20 animate-bounce-slow">
+                    <div className="absolute -top-6 -right-6 bg-white p-4 rounded-2xl shadow-xl border border-sky-100 z-20 animate-bounce-slow">
                       <div className="flex items-center gap-3">
-                        <div className="size-10 bg-[#10B981]/10 rounded-xl flex items-center justify-center text-[#10B981]">
+                        <div className="size-10 bg-sky-50 rounded-xl flex items-center justify-center text-sky-500">
                           <Check className="w-6 h-6" />
                         </div>
                         <div>
-                          <p className="text-xs font-bold text-[#374151]/40 dark:text-[#E0F7FA]/40 uppercase">Status</p>
-                          <p className="text-sm font-bold text-[#374151] dark:text-[#E0F7FA]">Course Completed</p>
+                          <p className="text-xs font-bold text-[#374151]/40 uppercase">Status</p>
+                          <p className="text-sm font-bold text-[#374151]">Course Completed</p>
                         </div>
                       </div>
                     </div>
-                    <div className="absolute -bottom-6 -left-6 bg-white dark:bg-[#1E293B] p-4 rounded-2xl shadow-xl border border-[#EFF6FF] dark:border-[#1E293B] z-20 animate-float">
+                    <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-sky-100 z-20 animate-float">
                       <div className="flex items-center gap-3">
-                        <div className="size-10 bg-[#F59E0B]/10 rounded-xl flex items-center justify-center text-[#F59E0B]">
+                        <div className="size-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-500">
                           <Zap className="w-6 h-6" />
                         </div>
                         <div>
-                          <p className="text-xs font-bold text-[#374151]/40 dark:text-[#E0F7FA]/40 uppercase">Progress</p>
-                          <p className="text-sm font-bold text-[#374151] dark:text-[#E0F7FA]">85% Mastered</p>
+                          <p className="text-xs font-bold text-[#374151]/40 uppercase">Progress</p>
+                          <p className="text-sm font-bold text-[#374151]">85% Mastered</p>
                         </div>
                       </div>
                     </div>
@@ -338,15 +316,15 @@ export default function App() {
               </div>
 
               <div className="mb-12">
-                <div className="flex items-center gap-2 text-sm text-[#374151]/60 dark:text-[#E0F7FA]/60 mb-8">
+                <div className="flex items-center gap-2 text-sm text-[#374151]/60 mb-8">
                   <span>Home</span>
                   <ChevronRight className="w-4 h-4" />
-                  <span className="font-semibold text-[#374151] dark:text-[#E0F7FA]">Courses</span>
+                  <span className="font-semibold text-[#374151]">Courses</span>
                 </div>
-                <h1 className="text-4xl font-black text-[#374151] dark:text-[#E0F7FA] mb-2 tracking-tight">
+                <h1 className="text-4xl font-black text-[#374151] mb-2 tracking-tight">
                   Featured Courses
                 </h1>
-                <p className="text-[#374151]/60 dark:text-[#E0F7FA]/60 text-lg">Secure your spot in the next cohort.</p>
+                <p className="text-[#374151]/60 text-lg">Secure your spot in the next cohort.</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -354,14 +332,14 @@ export default function App() {
                   <motion.div
                     key={course.id}
                     whileHover={{ y: -5 }}
-                    className="bg-white dark:bg-[#121921] rounded-2xl border border-[#EFF6FF] dark:border-[#1E293B] overflow-hidden shadow-sm hover:shadow-xl hover:shadow-[#3B82F6]/10 transition-all flex flex-col"
+                    className="bg-white rounded-2xl border border-sky-50 overflow-hidden shadow-sm hover:shadow-xl hover:shadow-blue-500/10 transition-all flex flex-col"
                   >
                     <div className="p-8 flex-1">
                       <div className="flex justify-between items-start mb-6">
-                        <div className="p-3 bg-[#EFF6FF] dark:bg-[#3B82F6]/10 rounded-xl">
+                        <div className="p-3 bg-sky-50 rounded-xl">
                           <course.icon className="text-[#3B82F6] w-6 h-6" />
                         </div>
-                        <div className="flex items-center gap-1 bg-[#EFF6FF] dark:bg-[#3B82F6]/10 text-[#3B82F6] px-2 py-1 rounded-lg text-xs font-bold">
+                        <div className="flex items-center gap-1 bg-sky-50 text-[#3B82F6] px-2 py-1 rounded-lg text-xs font-bold">
                           <Star className="w-3 h-3 fill-current" />
                           {course.rating}
                         </div>
@@ -369,19 +347,19 @@ export default function App() {
                       <span className="text-xs font-bold text-[#3B82F6] uppercase tracking-widest mb-2 block">
                         EXPERT COURSE
                       </span>
-                      <h3 className="text-xl font-bold mb-1 text-[#374151] dark:text-[#E0F7FA]">{course.title}</h3>
-                      <p className="text-[#374151]/60 dark:text-[#E0F7FA]/60 text-sm mb-6">
+                      <h3 className="text-xl font-bold mb-1 text-[#374151]">{course.title}</h3>
+                      <p className="text-[#374151]/60 text-sm mb-6">
                         Advanced Digital Skills • {course.modules} Modules
                       </p>
-                      <p className="text-[#374151]/80 dark:text-[#E0F7FA]/80 text-sm leading-relaxed mb-6">
+                      <p className="text-[#374151]/80 text-sm leading-relaxed mb-6">
                         {course.description}
                       </p>
                     </div>
-                    <div className="p-6 bg-[#F9FAFB] dark:bg-[#0D141C] border-t border-[#EFF6FF] dark:border-[#1E293B] flex items-center justify-between">
-                      <span className="text-2xl font-black text-[#374151] dark:text-[#E0F7FA]">${course.price}.00</span>
+                    <div className="p-6 bg-sky-50/30 border-t border-sky-50 flex items-center justify-between">
+                      <span className="text-2xl font-black text-[#374151]">${course.price}.00</span>
                       <button 
                         onClick={() => handleSelectCourse(course)}
-                        className="bg-[#3B82F6] text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-[#2563EB] transition-all shadow-lg shadow-[#3B82F6]/20 flex items-center gap-2"
+                        className="bg-[#F59E0B] text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-[#D97706] transition-all shadow-lg shadow-amber-500/20 flex items-center gap-2"
                       >
                         Enroll Now
                         <ArrowRight className="w-4 h-4" />
@@ -394,10 +372,10 @@ export default function App() {
               {/* Testimonials Section */}
               <div className="mt-24 mb-12">
                 <div className="text-center mb-16">
-                  <h2 className="text-3xl md:text-5xl font-black text-[#374151] dark:text-[#E0F7FA] mb-4 tracking-tight">
+                  <h2 className="text-3xl md:text-5xl font-black text-[#374151] mb-4 tracking-tight">
                     What Our <span className="text-[#3B82F6]">Students</span> Say
                   </h2>
-                  <p className="text-[#374151]/60 dark:text-[#E0F7FA]/60 text-lg">Join thousands of successful professionals.</p>
+                  <p className="text-[#374151]/60 text-lg">Join thousands of successful professionals.</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -405,22 +383,22 @@ export default function App() {
                     <motion.div
                       key={testimonial.id}
                       whileHover={{ y: -5 }}
-                      className="bg-white dark:bg-[#121921] p-8 rounded-[2rem] border border-[#EFF6FF] dark:border-[#1E293B] shadow-sm hover:shadow-xl hover:shadow-[#3B82F6]/5 transition-all relative"
+                      className="bg-white p-8 rounded-[2rem] border border-sky-100 shadow-sm hover:shadow-xl hover:shadow-blue-500/5 transition-all relative"
                     >
-                      <Quote className="absolute top-6 right-8 w-10 h-10 text-[#3B82F6]/10" />
+                      <Quote className="absolute top-6 right-8 w-10 h-10 text-blue-500/10" />
                       <div className="flex items-center gap-4 mb-6">
                         <img 
                           src={testimonial.avatar} 
                           alt={testimonial.name}
-                          className="size-12 rounded-full object-cover border-2 border-[#3B82F6]/20"
+                          className="size-12 rounded-full object-cover border-2 border-blue-500/20"
                           referrerPolicy="no-referrer"
                         />
                         <div>
-                          <h4 className="font-bold text-[#374151] dark:text-[#E0F7FA]">{testimonial.name}</h4>
+                          <h4 className="font-bold text-[#374151]">{testimonial.name}</h4>
                           <p className="text-xs font-bold text-[#3B82F6] uppercase tracking-widest">{testimonial.role}</p>
                         </div>
                       </div>
-                      <p className="text-[#374151]/80 dark:text-[#E0F7FA]/80 italic leading-relaxed">
+                      <p className="text-[#374151]/80 italic leading-relaxed">
                         "{testimonial.content}"
                       </p>
                     </motion.div>
@@ -438,26 +416,26 @@ export default function App() {
               exit={{ opacity: 0, y: -20 }}
               className="max-w-6xl mx-auto"
             >
-              <div className="flex items-center gap-2 text-sm text-[#374151]/60 dark:text-[#E0F7FA]/60 mb-8">
+              <div className="flex items-center gap-2 text-sm text-[#374151]/60 mb-8">
                 <span className="cursor-pointer hover:text-[#3B82F6]" onClick={() => setView('catalog')}>Home</span>
                 <ChevronRight className="w-4 h-4" />
                 <span className="cursor-pointer hover:text-[#3B82F6]" onClick={() => setView('catalog')}>Cart</span>
                 <ChevronRight className="w-4 h-4" />
-                <span className="font-semibold text-[#374151] dark:text-[#E0F7FA]">Checkout</span>
+                <span className="font-semibold text-[#374151]">Checkout</span>
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
                 {/* Left Column: Checkout Details */}
                 <div className="lg:col-span-2 space-y-8">
                   <section>
-                    <h1 className="text-4xl font-black text-[#374151] dark:text-[#E0F7FA] mb-2 tracking-tight">Checkout</h1>
-                    <p className="text-[#374151]/60 dark:text-[#E0F7FA]/60 text-lg">Secure your spot in the next cohort.</p>
+                    <h1 className="text-4xl font-black text-[#374151] mb-2 tracking-tight">Checkout</h1>
+                    <p className="text-[#374151]/60 text-lg">Secure your spot in the next cohort.</p>
                   </section>
 
                   {/* Item Card */}
-                  <section className="bg-[#EFF6FF] dark:bg-[#121921] rounded-2xl p-6 flex gap-6 items-center shadow-sm border border-[#3B82F6]/10 dark:border-[#1E293B]">
-                    <div className="size-32 rounded-xl overflow-hidden flex-shrink-0 bg-white dark:bg-[#0D141C] p-2">
-                      <div className="w-full h-full bg-[#F9FAFB] dark:bg-[#121921] rounded-lg flex items-center justify-center">
+                  <section className="bg-[#EFF6FF] rounded-2xl p-6 flex gap-6 items-center shadow-sm border border-[#3B82F6]/10">
+                    <div className="size-32 rounded-xl overflow-hidden flex-shrink-0 bg-white p-2">
+                      <div className="w-full h-full bg-[#F9FAFB] rounded-lg flex items-center justify-center">
                         <selectedCourse.icon className="w-12 h-12 text-[#3B82F6]" />
                       </div>
                     </div>
@@ -465,10 +443,10 @@ export default function App() {
                       <div className="flex justify-between items-start">
                         <div>
                           <span className="text-[#3B82F6] text-xs font-bold uppercase tracking-wider">Expert Course</span>
-                          <h3 className="text-[#374151] dark:text-[#E0F7FA] text-xl font-bold mt-1">{selectedCourse.title}</h3>
-                          <p className="text-[#374151]/60 dark:text-[#E0F7FA]/60 text-sm mt-1">Advanced Digital Skills • {selectedCourse.modules} Modules</p>
+                          <h3 className="text-[#374151] text-xl font-bold mt-1">{selectedCourse.title}</h3>
+                          <p className="text-[#374151]/60 text-sm mt-1">Advanced Digital Skills • {selectedCourse.modules} Modules</p>
                         </div>
-                        <p className="text-[#374151] dark:text-[#E0F7FA] text-xl font-black">${selectedCourse.price}.00</p>
+                        <p className="text-[#374151] text-xl font-black">${selectedCourse.price}.00</p>
                       </div>
                       <button 
                         onClick={() => setView('catalog')}
@@ -482,103 +460,61 @@ export default function App() {
 
                   {/* Payment Method */}
                   <section className="space-y-6">
-                    <h2 className="text-2xl font-bold text-[#374151] dark:text-[#E0F7FA]">Payment Method</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <label className="relative flex items-center gap-4 p-4 border-2 border-[#3B82F6] bg-[#EFF6FF] dark:bg-[#3B82F6]/10 rounded-xl cursor-pointer">
-                        <input checked readOnly className="accent-[#3B82F6] size-5" type="radio"/>
-                        <div className="flex items-center gap-3">
-                          <CreditCard className="text-[#3B82F6] w-5 h-5" />
-                          <span className="font-bold dark:text-[#E0F7FA]">Credit/Debit Card</span>
+                    <h2 className="text-2xl font-bold text-[#374151]">Payment Method</h2>
+                    <div className="p-6 bg-[#EFF6FF] rounded-2xl border-2 border-[#3B82F6] flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <div className="size-12 bg-white rounded-xl flex items-center justify-center shadow-sm">
+                          <Zap className="text-[#3B82F6] w-6 h-6" />
                         </div>
-                      </label>
-                      <label 
-                        onClick={() => setView('payment')}
-                        className="relative flex items-center gap-4 p-4 border-2 border-transparent bg-white dark:bg-[#121921] rounded-xl cursor-pointer hover:border-[#EFF6FF] dark:hover:border-[#1E293B] transition-all"
-                      >
-                        <input className="accent-[#3B82F6] size-5" type="radio"/>
-                        <div className="flex items-center gap-3">
-                          <Zap className="text-[#374151]/40 dark:text-[#E0F7FA]/40 w-5 h-5" />
-                          <span className="font-bold dark:text-[#E0F7FA]">PayPal</span>
-                        </div>
-                      </label>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-6 mt-8">
-                      <div className="col-span-2 space-y-2">
-                        <label className="text-sm font-bold text-[#374151]/70 dark:text-[#E0F7FA]/70">Cardholder Name</label>
-                        <input className="w-full bg-white dark:bg-[#121921] border-none dark:border dark:border-[#1E293B] rounded-xl p-4 focus:ring-2 focus:ring-[#3B82F6] transition-all dark:text-[#E0F7FA]" placeholder="John Doe" type="text"/>
-                      </div>
-                      <div className="col-span-2 space-y-2">
-                        <label className="text-sm font-bold text-[#374151]/70 dark:text-[#E0F7FA]/70">Card Number</label>
-                        <div className="relative">
-                          <input className="w-full bg-white dark:bg-[#121921] border-none dark:border dark:border-[#1E293B] rounded-xl p-4 pr-12 focus:ring-2 focus:ring-[#3B82F6] transition-all dark:text-[#E0F7FA]" placeholder="0000 0000 0000 0000" type="text"/>
-                          <CreditCard className="absolute right-4 top-1/2 -translate-y-1/2 text-[#374151]/30 dark:text-[#E0F7FA]/30 w-5 h-5" />
+                        <div>
+                          <p className="font-bold text-[#374151]">PayPal</p>
+                          <p className="text-sm text-[#374151]/60">Fast and secure payment</p>
                         </div>
                       </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-bold text-[#374151]/70 dark:text-[#E0F7FA]/70">Expiry Date</label>
-                        <input className="w-full bg-white dark:bg-[#121921] border-none dark:border dark:border-[#1E293B] rounded-xl p-4 focus:ring-2 focus:ring-[#3B82F6] transition-all dark:text-[#E0F7FA]" placeholder="MM/YY" type="text"/>
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-bold text-[#374151]/70 dark:text-[#E0F7FA]/70">CVV</label>
-                        <input className="w-full bg-white dark:bg-[#121921] border-none dark:border dark:border-[#1E293B] rounded-xl p-4 focus:ring-2 focus:ring-[#3B82F6] transition-all dark:text-[#E0F7FA]" placeholder="123" type="text"/>
-                      </div>
+                      <Check className="text-[#3B82F6] w-6 h-6" />
                     </div>
                   </section>
                 </div>
 
                 {/* Right Column: Order Summary */}
                 <div className="space-y-6">
-                  <div className="bg-[#EFF6FF] dark:bg-[#121921] p-8 rounded-2xl sticky top-24 border border-[#3B82F6]/10 dark:border-[#1E293B]">
-                    <h2 className="text-2xl font-bold text-[#374151] dark:text-[#E0F7FA] mb-6">Order Summary</h2>
+                  <div className="bg-[#EFF6FF] p-8 rounded-2xl sticky top-24 border border-[#3B82F6]/10">
+                    <h2 className="text-2xl font-bold text-[#374151] mb-6">Order Summary</h2>
                     <div className="space-y-4 mb-6">
-                      <div className="flex justify-between text-[#374151]/60 dark:text-[#E0F7FA]/60">
+                      <div className="flex justify-between text-[#374151]/60">
                         <span>Original Price</span>
                         <span>${selectedCourse.price + 50}.00</span>
                       </div>
-                      <div className="flex justify-between text-emerald-600 dark:text-emerald-400 font-medium">
+                      <div className="flex justify-between text-emerald-600 font-medium">
                         <span>Discount (20%)</span>
                         <span>-$50.00</span>
                       </div>
-                      <div className="flex justify-between text-[#374151]/60 dark:text-[#E0F7FA]/60">
+                      <div className="flex justify-between text-[#374151]/60">
                         <span>Platform Fee</span>
                         <span>$0.00</span>
                       </div>
                       <div className="pt-4 border-t border-[#3B82F6]/20 flex justify-between items-end">
-                        <span className="text-[#374151] dark:text-[#E0F7FA] font-bold">Total</span>
-                        <span className="text-3xl font-black text-[#374151] dark:text-[#E0F7FA]">${selectedCourse.price}.00</span>
+                        <span className="text-[#374151] font-bold">Total</span>
+                        <span className="text-3xl font-black text-[#374151]">${selectedCourse.price}.00</span>
                       </div>
                     </div>
                     
                     <div className="space-y-3">
                       <button 
                         onClick={() => setView('payment')}
-                        className="w-full bg-[#3B82F6] hover:bg-[#2563EB] text-white py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-[#3B82F6]/20"
+                        className="w-full bg-[#F59E0B] hover:bg-[#D97706] text-white py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-amber-500/20 flex items-center justify-center gap-3"
                       >
-                        Complete Purchase
-                      </button>
-                      <div className="text-center py-2">
-                        <span className="text-[#374151]/40 text-xs font-bold uppercase tracking-widest">Or pay with</span>
-                      </div>
-                      <button 
-                        onClick={() => setView('payment')}
-                        className="w-full bg-[#FFC439] hover:bg-[#F2BA36] py-3 rounded-xl flex items-center justify-center gap-2 transition-colors"
-                      >
-                        <img 
-                          src={PAYPAL_BUTTON_URL} 
-                          alt="PayPal" 
-                          className="h-6"
-                          referrerPolicy="no-referrer"
-                        />
+                        Proceed to PayPal
+                        <ArrowRight className="w-5 h-5" />
                       </button>
                     </div>
 
                     <div className="mt-8 space-y-4">
-                      <div className="flex items-center gap-3 text-[#374151]/60 dark:text-[#E0F7FA]/60 text-sm">
+                      <div className="flex items-center gap-3 text-[#374151]/60 text-sm">
                         <ShieldCheck className="text-[#3B82F6] w-5 h-5" />
                         Secure SSL encrypted payment
                       </div>
-                      <div className="flex items-center gap-3 text-[#374151]/60 dark:text-[#E0F7FA]/60 text-sm">
+                      <div className="flex items-center gap-3 text-[#374151]/60 text-sm">
                         <Clock className="text-[#3B82F6] w-5 h-5" />
                         30-day money-back guarantee
                       </div>
@@ -586,11 +522,11 @@ export default function App() {
                   </div>
 
                   {/* Promo Code */}
-                  <div className="p-6 bg-white dark:bg-[#121921] rounded-2xl border border-[#EFF6FF] dark:border-[#1E293B]">
-                    <p className="text-sm font-bold text-[#374151] dark:text-[#E0F7FA] mb-3 uppercase tracking-wider">Promo Code</p>
+                  <div className="p-6 bg-white rounded-2xl border border-[#EFF6FF]">
+                    <p className="text-sm font-bold text-[#374151] mb-3 uppercase tracking-wider">Promo Code</p>
                     <div className="flex gap-2">
-                      <input className="flex-1 bg-[#F9FAFB] dark:bg-[#0D141C] border-none dark:border dark:border-[#1E293B] rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-[#3B82F6] dark:text-[#E0F7FA]" placeholder="Enter code" type="text"/>
-                      <button className="bg-[#374151] dark:bg-[#3B82F6] text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-black dark:hover:bg-[#2563EB] transition-colors">Apply</button>
+                      <input className="flex-1 bg-[#F9FAFB] border-none rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-[#3B82F6]" placeholder="Enter code" type="text"/>
+                      <button className="bg-[#374151] text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-black transition-colors">Apply</button>
                     </div>
                   </div>
                 </div>
@@ -608,13 +544,13 @@ export default function App() {
             >
               <button 
                 onClick={() => setView('checkout')}
-                className="mb-8 text-sm font-medium text-[#374151]/60 dark:text-[#E0F7FA]/60 hover:text-[#3B82F6] flex items-center gap-2 transition-colors"
+                className="mb-8 text-sm font-medium text-[#374151]/60 hover:text-[#3B82F6] flex items-center gap-2 transition-colors"
               >
                 <ArrowRight className="w-4 h-4 rotate-180" />
                 Back to Checkout
               </button>
 
-              <div className="bg-white dark:bg-[#121921] rounded-3xl shadow-2xl border border-[#EFF6FF] dark:border-[#1E293B] overflow-hidden">
+              <div className="bg-white rounded-3xl shadow-2xl border border-[#EFF6FF] overflow-hidden">
                 <div className="bg-[#3B82F6] p-8 text-white text-center">
                   <h2 className="text-3xl font-bold mb-2">PayPal Payment</h2>
                   <p className="opacity-90 tracking-wide uppercase text-xs font-bold">Secure Transaction</p>
@@ -623,41 +559,31 @@ export default function App() {
                 <div className="p-8 md:p-12 space-y-12">
                   <section>
                     <div className="flex items-center gap-3 mb-8">
-                      <div className="w-8 h-8 bg-[#EFF6FF] dark:bg-[#3B82F6]/10 text-[#3B82F6] rounded-full flex items-center justify-center font-bold">1</div>
-                      <h3 className="text-xl font-bold dark:text-[#E0F7FA]">Choose Payment Method</h3>
+                      <div className="w-8 h-8 bg-[#EFF6FF] text-[#3B82F6] rounded-full flex items-center justify-center font-bold">1</div>
+                      <h3 className="text-xl font-bold">Choose Payment Method</h3>
                     </div>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="p-8 bg-[#F9FAFB] dark:bg-[#0D141C] rounded-2xl border border-[#EFF6FF] dark:border-[#1E293B] flex flex-col items-center text-center">
-                        <QrCode className="w-10 h-10 text-[#374151]/20 dark:text-[#E0F7FA]/20 mb-4" />
-                        <p className="text-sm font-bold text-[#374151]/60 dark:text-[#E0F7FA]/60 mb-6 uppercase tracking-wider">Scan QR Code</p>
-                        <img 
-                          src={QR_CODE_URL} 
-                          alt="QR Code" 
-                          className="w-48 h-48 rounded-xl shadow-md border-4 border-white dark:border-[#121921]"
-                          referrerPolicy="no-referrer"
-                        />
-                      </div>
-                      <div className="p-8 bg-[#F9FAFB] dark:bg-[#0D141C] rounded-2xl border border-[#EFF6FF] dark:border-[#1E293B] flex flex-col items-center text-center justify-center">
-                        <Mail className="w-10 h-10 text-[#374151]/20 dark:text-[#E0F7FA]/20 mb-4" />
-                        <p className="text-sm font-bold text-[#374151]/60 dark:text-[#E0F7FA]/60 mb-2 uppercase tracking-wider">Send to Email</p>
-                        <div className="flex items-center gap-2 bg-white dark:bg-[#121921] px-4 py-3 rounded-xl border border-[#EFF6FF] dark:border-[#1E293B] shadow-sm">
+                    <div className="flex justify-center">
+                      <div className="w-full max-w-md p-8 bg-[#F9FAFB] rounded-2xl border border-sky-100 flex flex-col items-center text-center justify-center">
+                        <Mail className="w-10 h-10 text-[#374151]/20 mb-4" />
+                        <p className="text-sm font-bold text-[#374151]/60 mb-2 uppercase tracking-wider">Send to Email</p>
+                        <div className="flex items-center gap-2 bg-white px-4 py-3 rounded-xl border border-sky-100 shadow-sm">
                           <span className="font-mono font-bold text-[#3B82F6]">{PAYPAL_EMAIL}</span>
                           <button 
                             onClick={() => copyToClipboard(PAYPAL_EMAIL)}
-                            className="p-1 hover:bg-[#F9FAFB] dark:hover:bg-[#0D141C] rounded-lg transition-colors"
+                            className="p-1 hover:bg-sky-50 rounded-lg transition-colors"
                           >
-                            <Copy className="w-4 h-4 text-[#374151]/40 dark:text-[#E0F7FA]/40" />
+                            <Copy className="w-4 h-4 text-[#374151]/40" />
                           </button>
                         </div>
                       </div>
                     </div>
                   </section>
 
-                  <section className="bg-[#EFF6FF] dark:bg-[#3B82F6]/10 rounded-2xl p-8 border border-[#3B82F6]/10 dark:border-[#3B82F6]/20">
+                  <section className="bg-[#EFF6FF] rounded-2xl p-8 border border-[#3B82F6]/10">
                     <div className="flex items-center gap-3 mb-6">
-                      <div className="w-8 h-8 bg-white dark:bg-[#121921] text-[#3B82F6] rounded-full flex items-center justify-center font-bold">2</div>
-                      <h3 className="text-xl font-bold text-[#374151] dark:text-[#E0F7FA]">Important Instructions</h3>
+                      <div className="w-8 h-8 bg-white text-[#3B82F6] rounded-full flex items-center justify-center font-bold">2</div>
+                      <h3 className="text-xl font-bold text-[#374151]">Important Instructions</h3>
                     </div>
                     
                     <ul className="space-y-4">
@@ -665,7 +591,7 @@ export default function App() {
                         <div className="mt-1 w-5 h-5 bg-[#3B82F6] rounded-full flex items-center justify-center flex-shrink-0">
                           <Check className="w-3 h-3 text-white" />
                         </div>
-                        <p className="text-[#374151]/80 dark:text-[#E0F7FA]/80 font-medium">
+                        <p className="text-[#374151]/80 font-medium">
                           Select the <strong>"Send"</strong> option in PayPal.
                         </p>
                       </li>
@@ -673,7 +599,7 @@ export default function App() {
                         <div className="mt-1 w-5 h-5 bg-[#3B82F6] rounded-full flex items-center justify-center flex-shrink-0">
                           <Check className="w-3 h-3 text-white" />
                         </div>
-                        <p className="text-[#374151]/80 dark:text-[#E0F7FA]/80 font-medium">
+                        <p className="text-[#374151]/80 font-medium">
                           Make sure <strong>not to add a shipping address</strong>.
                         </p>
                       </li>
@@ -682,16 +608,16 @@ export default function App() {
 
                   <section>
                     <div className="flex items-center gap-3 mb-6">
-                      <div className="w-8 h-8 bg-[#EFF6FF] dark:bg-[#3B82F6]/10 text-[#3B82F6] rounded-full flex items-center justify-center font-bold">3</div>
-                      <h3 className="text-xl font-bold dark:text-[#E0F7FA]">Add a Note</h3>
+                      <div className="w-8 h-8 bg-[#EFF6FF] text-[#3B82F6] rounded-full flex items-center justify-center font-bold">3</div>
+                      <h3 className="text-xl font-bold">Add a Note</h3>
                     </div>
                     
-                    <p className="text-[#374151]/60 dark:text-[#E0F7FA]/60 mb-4 font-medium">
+                    <p className="text-[#374151]/60 mb-4 font-medium">
                       In the <strong>"Add a note"</strong> section, please copy and paste:
                     </p>
 
                     <div className="relative group">
-                      <div className="bg-[#374151] dark:bg-[#0D141C] text-white/90 dark:text-[#E0F7FA]/90 p-8 rounded-2xl font-medium leading-relaxed italic border-l-4 border-[#3B82F6]">
+                      <div className="bg-[#374151] text-white/90 p-8 rounded-2xl font-medium leading-relaxed italic border-l-4 border-[#3B82F6]">
                         "{NOTE_TEXT}"
                       </div>
                       <button 
@@ -713,12 +639,12 @@ export default function App() {
                     </div>
                   </section>
 
-                  <div className="pt-8 border-t border-[#F9FAFB] dark:border-[#1E293B] space-y-4">
+                  <div className="pt-8 border-t border-[#F9FAFB] space-y-4">
                     <a 
                       href="https://www.paypal.com/myaccount/transfer/homepage" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="w-full bg-[#3B82F6] hover:bg-[#2563EB] text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-xl shadow-[#3B82F6]/20"
+                      className="w-full bg-[#F59E0B] hover:bg-[#D97706] text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-xl shadow-amber-500/20"
                     >
                       Continue to PayPal
                       <ExternalLink className="w-5 h-5" />
@@ -726,13 +652,13 @@ export default function App() {
                     
                     <button 
                       onClick={() => setView('confirmation')}
-                      className="w-full bg-[#374151] dark:bg-[#E0F7FA] text-white dark:text-[#374151] py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all hover:bg-black dark:hover:bg-white shadow-xl"
+                      className="w-full bg-[#374151] text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all hover:bg-black shadow-xl"
                     >
                       CONFIRMAR SU COMPRA
                       <Check className="w-5 h-5" />
                     </button>
 
-                    <p className="mt-6 text-center text-sm text-[#374151]/40 dark:text-[#E0F7FA]/40 font-medium">
+                    <p className="mt-6 text-center text-sm text-[#374151]/40 font-medium">
                       Access to <strong>{selectedCourse.title}</strong> will be granted immediately after verification.
                     </p>
                   </div>
@@ -748,16 +674,16 @@ export default function App() {
               exit={{ opacity: 0, y: -20 }}
               className="max-w-2xl mx-auto text-center"
             >
-              <div className="bg-white dark:bg-[#121921] rounded-3xl p-10 shadow-2xl border border-[#EFF6FF] dark:border-[#1E293B]">
-                <div className="size-20 bg-[#EFF6FF] dark:bg-[#3B82F6]/10 rounded-full flex items-center justify-center mx-auto mb-8">
+              <div className="bg-white rounded-3xl p-10 shadow-2xl border border-[#EFF6FF]">
+                <div className="size-20 bg-[#EFF6FF] rounded-full flex items-center justify-center mx-auto mb-8">
                   <Sparkles className="text-[#3B82F6] w-10 h-10" />
                 </div>
                 
-                <h2 className="text-3xl font-black text-[#374151] dark:text-[#E0F7FA] mb-6">
+                <h2 className="text-3xl font-black text-[#374151] mb-6">
                   Thank you for your purchase!
                 </h2>
                 
-                <p className="text-[#374151]/80 dark:text-[#E0F7FA]/80 text-lg mb-10 leading-relaxed">
+                <p className="text-[#374151]/80 text-lg mb-10 leading-relaxed">
                   To access the course, please enter your email address below. 
                   Access will be manually granted to this address on <strong>Google Drive</strong> within a few minutes.
                   <br /><br />
@@ -783,14 +709,14 @@ export default function App() {
                     className="space-y-4"
                   >
                     <div className="relative">
-                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-[#374151]/30 dark:text-[#E0F7FA]/30 w-5 h-5" />
+                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-[#374151]/30 w-5 h-5" />
                       <input 
                         required
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="your@email.com"
-                        className="w-full bg-[#F9FAFB] dark:bg-[#0D141C] border-2 border-transparent focus:border-[#3B82F6] rounded-2xl p-5 pl-12 outline-none transition-all dark:text-[#E0F7FA]"
+                        className="w-full bg-[#F9FAFB] border-2 border-transparent focus:border-[#3B82F6] rounded-2xl p-5 pl-12 outline-none transition-all"
                       />
                     </div>
                     <button 
@@ -805,20 +731,20 @@ export default function App() {
                     <motion.div 
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      className="bg-emerald-50 dark:bg-emerald-500/10 p-8 rounded-2xl border border-emerald-200 dark:border-emerald-500/20"
+                      className="bg-emerald-50 p-8 rounded-2xl border border-emerald-200"
                     >
-                      <div className="flex items-center justify-center gap-3 text-emerald-600 dark:text-emerald-400 font-bold text-xl mb-2">
+                      <div className="flex items-center justify-center gap-3 text-emerald-600 font-bold text-xl mb-2">
                         <Check className="w-6 h-6" />
                         Successfully Received!
                       </div>
-                      <p className="text-emerald-600/80 dark:text-emerald-400/80">
+                      <p className="text-emerald-600/80">
                         We have registered your email: <strong>{email}</strong>. 
                         Check your inbox in a few minutes.
                       </p>
                     </motion.div>
 
                     {!invoice && !isProcessingProof && (
-                      <div className="bg-white dark:bg-[#121921] p-8 rounded-2xl border-2 border-dashed border-[#3B82F6]/30">
+                      <div className="bg-white p-8 rounded-2xl border-2 border-dashed border-[#3B82F6]/30">
                         <h3 className="text-xl font-bold mb-4">Invoice Generation System</h3>
                         <p className="text-sm text-[#374151]/60 mb-6">Upload your payment proof (screenshot or PDF) to generate your official invoice automatically.</p>
                         
@@ -843,7 +769,7 @@ export default function App() {
                       <motion.div 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="bg-white dark:bg-[#121921] p-8 rounded-3xl shadow-xl border border-[#EFF6FF] text-left"
+                        className="bg-white p-8 rounded-3xl shadow-xl border border-[#EFF6FF] text-left"
                       >
                         <div className="flex justify-between items-start mb-8 border-b border-[#F9FAFB] pb-6">
                           <div>
@@ -896,7 +822,7 @@ export default function App() {
 
                     <button 
                       onClick={() => setView('catalog')}
-                      className="mt-6 text-[#374151] dark:text-[#E0F7FA] font-bold hover:underline"
+                      className="mt-6 text-[#374151] font-bold hover:underline"
                     >
                       Back to Home
                     </button>
@@ -915,7 +841,7 @@ export default function App() {
               className="max-w-4xl mx-auto"
             >
               {!isAdminAuthenticated ? (
-                <div className="bg-white dark:bg-[#121921] rounded-3xl p-10 shadow-2xl border border-[#EFF6FF] dark:border-[#1E293B] text-center">
+                <div className="bg-white rounded-3xl p-10 shadow-2xl border border-[#EFF6FF] text-center">
                   <Lock className="w-12 h-12 text-[#3B82F6] mx-auto mb-6" />
                   <h2 className="text-2xl font-bold mb-6">Admin Access</h2>
                   <form 
@@ -934,7 +860,7 @@ export default function App() {
                       value={adminPassword}
                       onChange={(e) => setAdminPassword(e.target.value)}
                       placeholder="Enter admin password"
-                      className="w-full bg-[#F9FAFB] dark:bg-[#0D141C] border-2 border-transparent focus:border-[#3B82F6] rounded-2xl p-5 outline-none transition-all dark:text-[#E0F7FA]"
+                      className="w-full bg-[#F9FAFB] border-2 border-transparent focus:border-[#3B82F6] rounded-2xl p-5 outline-none transition-all"
                     />
                     <button 
                       type="submit"
@@ -959,9 +885,9 @@ export default function App() {
                     </button>
                   </div>
                   
-                  <div className="bg-white dark:bg-[#121921] rounded-3xl overflow-hidden shadow-xl border border-[#EFF6FF] dark:border-[#1E293B]">
+                  <div className="bg-white rounded-3xl overflow-hidden shadow-xl border border-[#EFF6FF]">
                     <table className="w-full text-left">
-                      <thead className="bg-[#F9FAFB] dark:bg-[#0D141C] border-b border-[#EFF6FF] dark:border-[#1E293B]">
+                      <thead className="bg-[#F9FAFB] border-b border-[#EFF6FF]">
                         <tr>
                           <th className="p-6 font-bold">Email</th>
                           <th className="p-6 font-bold">Course</th>
@@ -975,10 +901,10 @@ export default function App() {
                           </tr>
                         ) : (
                           submissions.map((sub, i) => (
-                            <tr key={i} className="border-b border-[#EFF6FF] dark:border-[#1E293B]">
+                            <tr key={i} className="border-b border-[#EFF6FF]">
                               <td className="p-6 font-medium">{sub.email}</td>
                               <td className="p-6">{sub.course}</td>
-                              <td className="p-6 text-sm text-[#374151]/60 dark:text-[#E0F7FA]/60">{sub.date}</td>
+                              <td className="p-6 text-sm text-[#374151]/60">{sub.date}</td>
                             </tr>
                           ))
                         )}
@@ -999,40 +925,40 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-[#EFF6FF] dark:border-[#1E293B] mt-12 bg-white dark:bg-[#121921] transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center bg-[#3B82F6]/5 dark:bg-[#3B82F6]/10 px-2 py-1 rounded-xl border border-[#3B82F6]/10">
+      <footer className="bg-white border-t border-sky-100 py-12 mt-24">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-12">
+          <div className="flex flex-col items-center md:items-start gap-4">
+            <div className="flex items-center bg-sky-50 px-2 py-1 rounded-xl border border-sky-100">
               <KKeyIcon className="w-5 h-5 text-[#3B82F6] -mr-1.5" />
               <div className="flex font-black text-sm tracking-tighter">
-                <span className="text-[#10B981]">e</span>
-                <span className="text-[#F59E0B]">y</span>
-                <span className="text-[#EF4444] ml-0.5">C</span>
-                <span className="text-[#8B5CF6]">a</span>
-                <span className="text-[#EC4899]">l</span>
-                <span className="text-[#06B6D4]">l</span>
-                <span className="text-[#F97316]">s</span>
+                <span className="text-[#3B82F6]">e</span>
+                <span className="text-[#0EA5E9]">y</span>
+                <span className="text-[#F59E0B] ml-0.5">C</span>
+                <span className="text-[#3B82F6]">a</span>
+                <span className="text-[#0EA5E9]">l</span>
+                <span className="text-[#F59E0B]">l</span>
+                <span className="text-[#3B82F6]">s</span>
               </div>
             </div>
-            <span className="text-xs font-bold uppercase tracking-widest text-[#374151]/40 dark:text-[#E0F7FA]/40">© 2024. All rights reserved.</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-[#374151]/40">© 2024. All rights reserved.</span>
           </div>
 
           <div className="flex items-center gap-4">
-            <a href="#" className="p-2 bg-[#3B82F6]/5 dark:bg-[#3B82F6]/10 rounded-xl text-[#374151]/60 dark:text-[#E0F7FA]/60 hover:text-[#3B82F6] hover:bg-[#3B82F6]/10 transition-all">
+            <a href="#" className="p-2 bg-sky-50 rounded-xl text-[#374151]/60 hover:text-[#3B82F6] hover:bg-sky-100 transition-all">
               <Twitter className="w-5 h-5" />
             </a>
-            <a href="#" className="p-2 bg-[#3B82F6]/5 dark:bg-[#3B82F6]/10 rounded-xl text-[#374151]/60 dark:text-[#E0F7FA]/60 hover:text-[#E0F7FA] hover:bg-[#EC4899] transition-all">
+            <a href="#" className="p-2 bg-sky-50 rounded-xl text-[#374151]/60 hover:text-white hover:bg-[#EC4899] transition-all">
               <Instagram className="w-5 h-5" />
             </a>
-            <a href="#" className="p-2 bg-[#3B82F6]/5 dark:bg-[#3B82F6]/10 rounded-xl text-[#374151]/60 dark:text-[#E0F7FA]/60 hover:text-white hover:bg-[#0A66C2] transition-all">
+            <a href="#" className="p-2 bg-sky-50 rounded-xl text-[#374151]/60 hover:text-white hover:bg-[#0A66C2] transition-all">
               <Linkedin className="w-5 h-5" />
             </a>
-            <a href="#" className="p-2 bg-[#3B82F6]/5 dark:bg-[#3B82F6]/10 rounded-xl text-[#374151]/60 dark:text-[#E0F7FA]/60 hover:text-white hover:bg-[#1877F2] transition-all">
+            <a href="#" className="p-2 bg-sky-50 rounded-xl text-[#374151]/60 hover:text-white hover:bg-[#1877F2] transition-all">
               <Facebook className="w-5 h-5" />
             </a>
           </div>
 
-          <div className="flex gap-8 text-sm font-bold text-[#374151]/60 dark:text-[#E0F7FA]/60 uppercase tracking-widest">
+          <div className="flex gap-8 text-sm font-bold text-[#374151]/60 uppercase tracking-widest">
             <a href="#" className="hover:text-[#3B82F6] transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-[#3B82F6] transition-colors">Terms of Service</a>
             <a href="#" className="hover:text-[#3B82F6] transition-colors">Help Center</a>
